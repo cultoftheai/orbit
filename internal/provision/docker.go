@@ -5,7 +5,7 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/cultofthecode/orbit/internal/proxy"
+	"github.com/cultoftheai/orbit/internal/proxy"
 )
 
 // Names of the rootless engine and its boundary gate.

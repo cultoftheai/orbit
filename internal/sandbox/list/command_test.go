@@ -9,8 +9,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/cultofthecode/orbit/internal/orbstack/orbstacktest"
-	"github.com/cultofthecode/orbit/internal/sandbox"
+	"github.com/cultoftheai/orbit/internal/orbstack/orbstacktest"
+	"github.com/cultoftheai/orbit/internal/sandbox"
 )
 
 // execute runs the command of the slice on its own with args and returns what

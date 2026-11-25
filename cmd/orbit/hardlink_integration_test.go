@@ -11,9 +11,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/cultofthecode/orbit/internal/orbstack"
-	"github.com/cultofthecode/orbit/internal/sandbox"
-	"github.com/cultofthecode/orbit/internal/sandbox/initialize"
+	"github.com/cultoftheai/orbit/internal/orbstack"
+	"github.com/cultoftheai/orbit/internal/sandbox"
+	"github.com/cultoftheai/orbit/internal/sandbox/initialize"
 )
 
 // temporaryHome makes a new home directory with a .claude directory in it,

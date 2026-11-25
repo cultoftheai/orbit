@@ -16,17 +16,17 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/cultofthecode/orbit/internal/agent"
-	"github.com/cultofthecode/orbit/internal/agent/claude"
-	"github.com/cultofthecode/orbit/internal/orbstack"
-	"github.com/cultofthecode/orbit/internal/provision"
-	"github.com/cultofthecode/orbit/internal/sandbox"
-	"github.com/cultofthecode/orbit/internal/sandbox/destroy"
-	"github.com/cultofthecode/orbit/internal/sandbox/initialize"
-	"github.com/cultofthecode/orbit/internal/sandbox/list"
-	"github.com/cultofthecode/orbit/internal/sandbox/shell"
-	"github.com/cultofthecode/orbit/internal/sandbox/start"
-	"github.com/cultofthecode/orbit/internal/sandbox/stop"
+	"github.com/cultoftheai/orbit/internal/agent"
+	"github.com/cultoftheai/orbit/internal/agent/claude"
+	"github.com/cultoftheai/orbit/internal/orbstack"
+	"github.com/cultoftheai/orbit/internal/provision"
+	"github.com/cultoftheai/orbit/internal/sandbox"
+	"github.com/cultoftheai/orbit/internal/sandbox/destroy"
+	"github.com/cultoftheai/orbit/internal/sandbox/initialize"
+	"github.com/cultoftheai/orbit/internal/sandbox/list"
+	"github.com/cultoftheai/orbit/internal/sandbox/shell"
+	"github.com/cultoftheai/orbit/internal/sandbox/start"
+	"github.com/cultoftheai/orbit/internal/sandbox/stop"
 )
 
 // Exit codes of orbit.

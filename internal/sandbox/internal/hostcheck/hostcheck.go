@@ -19,8 +19,8 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/cultofthecode/orbit/internal/sandbox"
-	"github.com/cultofthecode/orbit/internal/sandbox/internal/realpath"
+	"github.com/cultoftheai/orbit/internal/sandbox"
+	"github.com/cultoftheai/orbit/internal/sandbox/internal/realpath"
 )
 
 // Unnested refuses dir, the canonical project directory of the machine name,

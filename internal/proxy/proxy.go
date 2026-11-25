@@ -10,7 +10,7 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/cultofthecode/orbit/internal/policy"
+	"github.com/cultoftheai/orbit/internal/policy"
 )
 
 // User is the system user that tinyproxy runs as.

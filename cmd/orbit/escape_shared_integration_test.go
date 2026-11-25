@@ -5,10 +5,10 @@ package main
 import (
 	"testing"
 
-	"github.com/cultofthecode/orbit/internal/agent/claude"
-	"github.com/cultofthecode/orbit/internal/orbstack"
-	"github.com/cultofthecode/orbit/internal/sandbox"
-	"github.com/cultofthecode/orbit/internal/sandbox/initialize"
+	"github.com/cultoftheai/orbit/internal/agent/claude"
+	"github.com/cultoftheai/orbit/internal/orbstack"
+	"github.com/cultoftheai/orbit/internal/sandbox"
+	"github.com/cultoftheai/orbit/internal/sandbox/initialize"
 )
 
 // boundaryIntact is the re-check of the boundary after E09: the units are

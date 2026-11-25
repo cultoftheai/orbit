@@ -11,8 +11,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/cultofthecode/orbit/internal/orbstack/orbstacktest"
-	"github.com/cultofthecode/orbit/internal/sandbox"
+	"github.com/cultoftheai/orbit/internal/orbstack/orbstacktest"
+	"github.com/cultoftheai/orbit/internal/sandbox"
 )
 
 // relocatingVariables are the environment variables that move a protected

@@ -19,9 +19,9 @@ export ORBIT_TARBALL="$work/src.tar.gz"
 cat >orbit.rb <<'RB'
 class Orbit < Formula
   desc "Run coding agents in sandboxes on OrbStack"
-  url "https://github.com/cultofthecode/orbit/archive/refs/tags/v0.1.0.tar.gz"
+  url "https://github.com/cultoftheai/orbit/archive/refs/tags/v0.1.0.tar.gz"
   sha256 "0000000000000000000000000000000000000000000000000000000000000000"
-  head "https://github.com/cultofthecode/orbit.git", branch: "main"
+  head "https://github.com/cultoftheai/orbit.git", branch: "main"
 end
 RB
 cp orbit.rb before.rb
@@ -30,7 +30,7 @@ cp orbit.rb before.rb
 [ "$(diff before.rb orbit.rb | grep -c '^>')" = 2 ] || fail "more or fewer than two lines changed"
 grep -q "refs/tags/v0.2.0.tar.gz\"" orbit.rb || fail "url not updated"
 grep -q "sha256 \"$want\"" orbit.rb || fail "sha256 not updated"
-grep -q 'head "https://github.com/cultofthecode/orbit.git", branch: "main"' orbit.rb || fail "head line touched"
+grep -q 'head "https://github.com/cultoftheai/orbit.git", branch: "main"' orbit.rb || fail "head line touched"
 
 cp orbit.rb again.rb
 "$script" v0.2.0 orbit.rb >/dev/null

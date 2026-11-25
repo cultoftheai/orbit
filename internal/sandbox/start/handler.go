@@ -7,8 +7,8 @@ import (
 	"os/user"
 	"time"
 
-	"github.com/cultofthecode/orbit/internal/sandbox"
-	"github.com/cultofthecode/orbit/internal/sandbox/internal/hostcheck"
+	"github.com/cultoftheai/orbit/internal/sandbox"
+	"github.com/cultoftheai/orbit/internal/sandbox/internal/hostcheck"
 )
 
 // States of a machine that the handler acts on.

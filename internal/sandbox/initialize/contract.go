@@ -8,7 +8,7 @@ package initialize
 import (
 	"errors"
 
-	"github.com/cultofthecode/orbit/internal/sandbox"
+	"github.com/cultoftheai/orbit/internal/sandbox"
 )
 
 // Input is the request to create the sandbox of a project directory.

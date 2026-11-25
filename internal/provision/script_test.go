@@ -9,7 +9,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/cultofthecode/orbit/internal/policy"
+	"github.com/cultoftheai/orbit/internal/policy"
 )
 
 // dockerPackageList is the package list of the rootless engine per

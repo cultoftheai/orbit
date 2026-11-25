@@ -11,9 +11,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/cultofthecode/orbit/internal/orbstack/orbstacktest"
-	"github.com/cultofthecode/orbit/internal/sandbox"
-	"github.com/cultofthecode/orbit/internal/sandbox/internal/realpath"
+	"github.com/cultoftheai/orbit/internal/orbstack/orbstacktest"
+	"github.com/cultoftheai/orbit/internal/sandbox"
+	"github.com/cultoftheai/orbit/internal/sandbox/internal/realpath"
 )
 
 // panicReader fails the test when something reads it.

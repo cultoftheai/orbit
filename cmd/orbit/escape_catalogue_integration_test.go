@@ -15,8 +15,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/cultofthecode/orbit/internal/orbstack"
-	"github.com/cultofthecode/orbit/internal/provision"
+	"github.com/cultoftheai/orbit/internal/orbstack"
+	"github.com/cultoftheai/orbit/internal/provision"
 )
 
 // identity is where an attempt or a control runs.
