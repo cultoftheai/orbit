@@ -36,7 +36,7 @@ Parents are linked as GitHub sub-issues. The epics carry no checklist. E04 comes
 | E04-S02-T03 | [#55](https://github.com/cultoftheai/orbit/issues/55) | Install Claude Code on Alpine (musl) as the agent user | #46 (story #52) | E04-S02-T02 (#54) | no |
 | E04-S03 | [#56](https://github.com/cultoftheai/orbit/issues/56) | The agent can build and run containers with rootless Docker on an Alpine sandbox | #46 | E01-S05 (#9), E04-S02 (#52) | no |
 | E04-S04 | [#57](https://github.com/cultoftheai/orbit/issues/57) | `orbit init` without `--distro` creates an Alpine sandbox, after the escape suite passes on all three distributions | #46 | E04-S02 (#52), E04-S03 (#56), E01-S06 (#10) | no |
-| E06 | [#97](https://github.com/cultoftheai/orbit/issues/97) | The owner can install Orbit with `brew install cultofthecode/tap/orbit` from a versioned, checksummed release | — | E01 (#2) | no |
+| E06 | [#97](https://github.com/cultoftheai/orbit/issues/97) | The owner can install Orbit with `brew install cultoftheai/tap/orbit` from a versioned, checksummed release | — | E01 (#2) | no |
 | E06-T01 | [#140](https://github.com/cultoftheai/orbit/issues/140) | Record the distribution decision (Q03) and the answers of the Homebrew spec in the brief and the backlog | #97 | — | no |
 | E06-T02 | [#141](https://github.com/cultoftheai/orbit/issues/141) | Add the Apache-2.0 license | #97 | — | no |
 | E06-S01 | [#99](https://github.com/cultoftheai/orbit/issues/99) | CI: run the validation gate on GitHub Actions, and decide on integration and mutation testing | #97 | — | no |
@@ -44,5 +44,5 @@ Parents are linked as GitHub sub-issues. The epics carry no checklist. E04 comes
 | E06-S06 | [#143](https://github.com/cultoftheai/orbit/issues/143) | A user without OrbStack sees OrbStack named, and how to install it, when `orbit init` runs | #97 | — | no |
 | E06-S03 | [#144](https://github.com/cultoftheai/orbit/issues/144) | A signed tag on `main` produces a GitHub Release with the darwin arm64 archive, checksums, and provenance | #97 | E06-S01 (#99), E06-S02 (#142), E06-T01 (#140), E06-T02 (#141) | no |
 | E06-T03 | [#145](https://github.com/cultoftheai/orbit/issues/145) | Make the repository public and protect `main` and the `v*` tags | #97 | E06-T01 (#140), E06-T02 (#141), E06-S01 (#99), E06-S02 (#142), E06-S06 (#143), E06-S03 (#144) | no |
-| E06-S04 | [#146](https://github.com/cultoftheai/orbit/issues/146) | The owner can run `brew install cultofthecode/tap/orbit` | #97 | E06-T03 (#145), E06-S06 (#143), E01-S01 (#5), E01-S02 (#6) | no |
+| E06-S04 | [#146](https://github.com/cultoftheai/orbit/issues/146) | The owner can run `brew install cultoftheai/tap/orbit` | #97 | E06-T03 (#145), E06-S06 (#143), E01-S01 (#5), E01-S02 (#6) | no |
 | E06-S05 | [#147](https://github.com/cultoftheai/orbit/issues/147) | A release opens a tested formula bump PR on the tap | #97 | E06-S04 (#146) | no |
