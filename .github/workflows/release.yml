@@ -122,7 +122,7 @@ jobs:
         if: steps.token.outputs.present == 'true'
         env:
           GH_TOKEN: ${{ secrets.TAP_GITHUB_TOKEN }}
-          TAP: cultofthecode/homebrew-tap
+          TAP: cultoftheai/homebrew-tap
         run: |
           version="${GITHUB_REF_NAME#v}"
           branch="bump-orbit-${version}"

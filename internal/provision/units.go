@@ -5,7 +5,7 @@ import (
 	"io/fs"
 	"strings"
 
-	"github.com/cultofthecode/orbit/internal/proxy"
+	"github.com/cultoftheai/orbit/internal/proxy"
 )
 
 // File is one file that the root script writes, owned by root.

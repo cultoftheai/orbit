@@ -8,7 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/cultofthecode/orbit/internal/policy"
+	"github.com/cultoftheai/orbit/internal/policy"
 )
 
 // officialSource is the only URL that the install of Claude Code may fetch:

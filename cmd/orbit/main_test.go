@@ -11,7 +11,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/cultofthecode/orbit/internal/sandbox"
+	"github.com/cultoftheai/orbit/internal/sandbox"
 )
 
 // failingWriter is a stream that refuses every write.

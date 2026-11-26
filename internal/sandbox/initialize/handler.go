@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/cultofthecode/orbit/internal/sandbox"
-	"github.com/cultofthecode/orbit/internal/sandbox/internal/hostcheck"
+	"github.com/cultoftheai/orbit/internal/sandbox"
+	"github.com/cultoftheai/orbit/internal/sandbox/internal/hostcheck"
 )
 
 // discardTimeout bounds the deletion of a machine whose provisioning or

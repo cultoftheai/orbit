@@ -17,8 +17,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/cultofthecode/orbit/internal/orbstack/orbstacktest"
-	"github.com/cultofthecode/orbit/internal/sandbox"
+	"github.com/cultoftheai/orbit/internal/orbstack/orbstacktest"
+	"github.com/cultoftheai/orbit/internal/sandbox"
 )
 
 // dataVolume is the path of the data volume of macOS. A firmlink joins its

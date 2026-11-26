@@ -10,7 +10,7 @@ Today a sandbox exists after `orbit init`, but Orbit gives no way into it. The o
 
 ## Resolved assumptions
 
-This spec was written unattended. The owner, Jakub Tobiasz, accepted the answers to Q1–Q6 as written on 2026-11-11 ([PR #72](https://github.com/cultofthecode/orbit/pull/72), [#6](https://github.com/cultofthecode/orbit/issues/6)). No question is open. The rest of the spec is written under these decisions. Facts marked `[DATA]` come from probes on OrbStack 2.2.5 on 2026-11-11 (see Evidence).
+This spec was written unattended. The owner, Jakub Tobiasz, accepted the answers to Q1–Q6 as written on 2026-11-11 ([PR #72](https://github.com/cultoftheai/orbit/pull/72), [#6](https://github.com/cultoftheai/orbit/issues/6)). No question is open. The rest of the spec is written under these decisions. Facts marked `[DATA]` come from probes on OrbStack 2.2.5 on 2026-11-11 (see Evidence).
 
 | # | Question | Decision | Why |
 |---|---|---|---|

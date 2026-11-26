@@ -7,7 +7,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/cultofthecode/orbit/internal/proxy"
+	"github.com/cultoftheai/orbit/internal/proxy"
 )
 
 // uidFloor is the first uid that the firewall filters. Every user account,

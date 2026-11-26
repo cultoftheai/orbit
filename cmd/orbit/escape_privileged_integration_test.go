@@ -9,7 +9,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/cultofthecode/orbit/internal/proxy"
+	"github.com/cultoftheai/orbit/internal/proxy"
 )
 
 // targetSentinel is the file that root writes into the target machine of

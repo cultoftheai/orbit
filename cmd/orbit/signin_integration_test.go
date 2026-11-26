@@ -14,12 +14,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/cultofthecode/orbit/internal/agent/claude"
-	"github.com/cultofthecode/orbit/internal/orbstack"
-	"github.com/cultofthecode/orbit/internal/sandbox"
-	"github.com/cultofthecode/orbit/internal/sandbox/initialize"
-	"github.com/cultofthecode/orbit/internal/sandbox/start"
-	"github.com/cultofthecode/orbit/internal/sandbox/stop"
+	"github.com/cultoftheai/orbit/internal/agent/claude"
+	"github.com/cultoftheai/orbit/internal/orbstack"
+	"github.com/cultoftheai/orbit/internal/sandbox"
+	"github.com/cultoftheai/orbit/internal/sandbox/initialize"
+	"github.com/cultoftheai/orbit/internal/sandbox/start"
+	"github.com/cultoftheai/orbit/internal/sandbox/stop"
 )
 
 // signInTimeout bounds the sign-in test when the test binary has no

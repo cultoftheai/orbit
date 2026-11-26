@@ -4,7 +4,7 @@
 // unmodified and never handles its credentials (R04, D08).
 package claude
 
-import "github.com/cultofthecode/orbit/internal/agent"
+import "github.com/cultoftheai/orbit/internal/agent"
 
 // Definition is the Claude Code agent, named claude-code.
 var Definition = agent.Definition{

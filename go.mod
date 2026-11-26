@@ -1,4 +1,4 @@
-module github.com/cultofthecode/orbit
+module github.com/cultoftheai/orbit
 
 go 1.27.4
 

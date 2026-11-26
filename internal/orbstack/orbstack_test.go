@@ -18,7 +18,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/cultofthecode/orbit/internal/orbstack/orbstacktest"
+	"github.com/cultoftheai/orbit/internal/orbstack/orbstacktest"
 )
 
 const testPrefix = "orbit-"

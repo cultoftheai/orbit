@@ -10,14 +10,14 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/cultofthecode/orbit/internal/agent"
-	"github.com/cultofthecode/orbit/internal/agent/claude"
-	"github.com/cultofthecode/orbit/internal/orbstack"
-	"github.com/cultofthecode/orbit/internal/orbstack/orbstacktest"
-	"github.com/cultofthecode/orbit/internal/policy"
-	"github.com/cultofthecode/orbit/internal/provision"
-	"github.com/cultofthecode/orbit/internal/sandbox"
-	"github.com/cultofthecode/orbit/internal/sandbox/initialize"
+	"github.com/cultoftheai/orbit/internal/agent"
+	"github.com/cultoftheai/orbit/internal/agent/claude"
+	"github.com/cultoftheai/orbit/internal/orbstack"
+	"github.com/cultoftheai/orbit/internal/orbstack/orbstacktest"
+	"github.com/cultoftheai/orbit/internal/policy"
+	"github.com/cultoftheai/orbit/internal/provision"
+	"github.com/cultoftheai/orbit/internal/sandbox"
+	"github.com/cultoftheai/orbit/internal/sandbox/initialize"
 )
 
 func TestTheAdapterRunsInstallsAsTheAgentOfProvisioning(t *testing.T) {

@@ -11,7 +11,7 @@ import (
 	"syscall"
 	"testing"
 
-	"github.com/cultofthecode/orbit/internal/sandbox"
+	"github.com/cultoftheai/orbit/internal/sandbox"
 )
 
 func TestPrintableErrorEscapesWhatIsNotPrintable(t *testing.T) {

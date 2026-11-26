@@ -7,8 +7,8 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/cultofthecode/orbit/internal/policy"
-	"github.com/cultofthecode/orbit/internal/proxy"
+	"github.com/cultoftheai/orbit/internal/policy"
+	"github.com/cultoftheai/orbit/internal/proxy"
 )
 
 // Version is the provisioning version that the root script writes into the

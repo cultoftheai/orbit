@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/cultofthecode/orbit/internal/provision"
+	"github.com/cultoftheai/orbit/internal/provision"
 )
 
 // outcome is what the suite concludes about one attempt.

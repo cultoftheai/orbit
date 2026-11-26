@@ -11,7 +11,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/cultofthecode/orbit/internal/sandbox"
+	"github.com/cultoftheai/orbit/internal/sandbox"
 )
 
 // NewCommand returns the CLI command "orbit destroy", which deletes the

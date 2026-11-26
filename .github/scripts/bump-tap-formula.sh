@@ -17,7 +17,7 @@ fi
 work="$(mktemp -d)"
 trap 'rm -rf "$work"' EXIT
 
-url="https://github.com/cultofthecode/orbit/archive/refs/tags/${tag}.tar.gz"
+url="https://github.com/cultoftheai/orbit/archive/refs/tags/${tag}.tar.gz"
 tarball="${ORBIT_TARBALL:-}"
 if [ -z "$tarball" ]; then
   tarball="$work/source.tar.gz"

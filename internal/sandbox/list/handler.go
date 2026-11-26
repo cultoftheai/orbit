@@ -6,7 +6,7 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/cultofthecode/orbit/internal/sandbox"
+	"github.com/cultoftheai/orbit/internal/sandbox"
 )
 
 // Machine is a machine of OrbStack with its stored mounts. The slice has its

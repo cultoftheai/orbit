@@ -5,7 +5,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/cultofthecode/orbit/internal/orbstack/orbstacktest"
+	"github.com/cultoftheai/orbit/internal/orbstack/orbstacktest"
 )
 
 // execute runs the command of the slice on its own with handler and args and

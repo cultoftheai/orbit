@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/cultofthecode/orbit/internal/sandbox"
-	"github.com/cultofthecode/orbit/internal/sandbox/internal/realpath"
+	"github.com/cultoftheai/orbit/internal/sandbox"
+	"github.com/cultoftheai/orbit/internal/sandbox/internal/realpath"
 )
 
 // stateRunning is the only state of a machine that the handler acts on.

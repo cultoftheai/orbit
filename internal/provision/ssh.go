@@ -3,7 +3,7 @@ package provision
 import (
 	"fmt"
 
-	"github.com/cultofthecode/orbit/internal/proxy"
+	"github.com/cultoftheai/orbit/internal/proxy"
 )
 
 // sshConfigPath is the SSH client configuration of Orbit. It sorts before

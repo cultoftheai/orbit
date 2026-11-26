@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/cultofthecode/orbit/internal/sandbox"
-	"github.com/cultofthecode/orbit/internal/sandbox/internal/realpath"
+	"github.com/cultoftheai/orbit/internal/sandbox"
+	"github.com/cultoftheai/orbit/internal/sandbox/internal/realpath"
 )
 
 // States of a machine that the handler acts on.

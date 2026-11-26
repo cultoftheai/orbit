@@ -1,12 +1,13 @@
-# Homebrew distribution: from a private checkout to `brew install cultofthecode/tap/orbit`
+# Homebrew distribution: from a private checkout to `brew install cultoftheai/tap/orbit`
 
 Issue: #97 (proposed backlog id E06; not filed by `om-backlog` yet).
 Answers: brief question Q03 ("How is Orbit distributed?") and, through the owner's answer to Q4 below, brief question Q11 (public release and the Claude Code terms).
 Depends on: E01 (#2) reaching a usable first version for the first tag; nothing for the CI and version milestones.
+Moved: on 2026-11-25 the owner moved `orbit` and `homebrew-tap` from the `cultofthecode` organization to `cultoftheai` (brief D29, which supersedes D27). This spec names the new organization; the dated evidence keeps the old one. Release v0.1.0 and its attestation name `cultofthecode/orbit`.
 
 ## 📝 TLDR
 
-Today Orbit exists only as a private, unlicensed Go module that the owner builds by hand: no version, no tag, no CI, no release. This spec lays out the path to `brew install cultofthecode/tap/orbit` in eight milestones: decisions and a license (M0), CI with the validation gate (M1), `orbit --version` and an error that names OrbStack when `orb` is missing (M2), a tagged GitHub Release built by GoReleaser for Apple Silicon (darwin arm64) with SHA-256 checksums and build provenance (M3), going public (M4), a `cultofthecode/homebrew-tap` with a source-built formula and its own CI (M5), automatic tap updates on release (M6), and, later and under its own spec, signed and notarized prebuilt binaries (M7). Orbit supports only Macs with Apple Silicon, and OrbStack is a required dependency. homebrew-core is out of reach today (notability, and the proprietary OrbStack dependency); a tap is the only path. The owner decided every question below on 2026-11-12.
+Today Orbit exists only as a private, unlicensed Go module that the owner builds by hand: no version, no tag, no CI, no release. This spec lays out the path to `brew install cultoftheai/tap/orbit` in eight milestones: decisions and a license (M0), CI with the validation gate (M1), `orbit --version` and an error that names OrbStack when `orb` is missing (M2), a tagged GitHub Release built by GoReleaser for Apple Silicon (darwin arm64) with SHA-256 checksums and build provenance (M3), going public (M4), a `cultoftheai/homebrew-tap` with a source-built formula and its own CI (M5), automatic tap updates on release (M6), and, later and under its own spec, signed and notarized prebuilt binaries (M7). Orbit supports only Macs with Apple Silicon, and OrbStack is a required dependency. homebrew-core is out of reach today (notability, and the proprietary OrbStack dependency); a tap is the only path. The owner decided every question below on 2026-11-12.
 
 ## Decisions (owner, 2026-11-12)
 
@@ -14,16 +15,16 @@ The owner decided all sixteen questions on 2026-11-12: fourteen as proposed (inc
 
 | # | Question | Decision and requirement | Why |
 |---|---|---|---|
-| Q1 | Where does distribution enter the brief and the backlog? | **Decided as proposed. E06-T01 adds the next free decision row of the brief (D27; D26 has landed), which answers Q03: "Orbit is distributed through a Homebrew tap, `cultofthecode/homebrew-tap`, from tagged GitHub Releases, for Macs with Apple Silicon." The same task records the owner's answer to brief Q11 (Q4 below: "No", in the words quoted in Evidence), closes Q03 and Q11, and moves epic E06 to Scope → Now, ordered after E01.** M1 and M2 may start at once; M3 waits for a usable E01 (see Q8). This PR edits neither the brief nor `backlog.md`. | Active rows of the brief are a protected contract (`AGENTS.md`); the owner's decisions of 2026-11-12 are the approval that E06-T01 records. CI and `--version` help today's work and do not depend on any other decision. |
-| Q2 | Is `cultofthecode/orbit` made public, and when? | **Decided as proposed. The repository SHALL become public at M4, and only after M0–M3 are green.** (Q4 is answered.) Until then, everything runs privately. | Homebrew downloads the source or a binary without credentials; Homebrew removed its private-repository download strategy, so a private repository needs every user to set a token `[DOCUMENT]`. On GitHub Free, a private repository has no branch protection or rulesets (`gh api …/branches/main/protection` answers 403 `[DATA]`), no artifact attestations, and macOS Actions minutes count ten times against 2,000 per month. A public repository gets all of these free. |
+| Q1 | Where does distribution enter the brief and the backlog? | **Decided as proposed. E06-T01 adds the next free decision row of the brief (D27; D26 has landed), which answers Q03: "Orbit is distributed through a Homebrew tap, `cultoftheai/homebrew-tap`, from tagged GitHub Releases, for Macs with Apple Silicon." The same task records the owner's answer to brief Q11 (Q4 below: "No", in the words quoted in Evidence), closes Q03 and Q11, and moves epic E06 to Scope → Now, ordered after E01.** M1 and M2 may start at once; M3 waits for a usable E01 (see Q8). This PR edits neither the brief nor `backlog.md`. | Active rows of the brief are a protected contract (`AGENTS.md`); the owner's decisions of 2026-11-12 are the approval that E06-T01 records. CI and `--version` help today's work and do not depend on any other decision. |
+| Q2 | Is `cultoftheai/orbit` made public, and when? | **Decided as proposed. The repository SHALL become public at M4, and only after M0–M3 are green.** (Q4 is answered.) Until then, everything runs privately. | Homebrew downloads the source or a binary without credentials; Homebrew removed its private-repository download strategy, so a private repository needs every user to set a token `[DOCUMENT]`. On GitHub Free, a private repository has no branch protection or rulesets (`gh api …/branches/main/protection` answers 403 `[DATA]`), no artifact attestations, and macOS Actions minutes count ten times against 2,000 per month. A public repository gets all of these free. |
 | Q3 | Which license? | **Decided as proposed: Apache-2.0.** `LICENSE` at the root holds the Apache License 2.0, and the formula declares `license "Apache-2.0"`. | The repository has no license `[DATA]`; without one, nobody else may use the code, and homebrew-core requires an open-source license `[DOCUMENT]`. Apache-2.0 has an explicit patent grant and is common for Go CLIs. |
-| Q4 | Does a public tap make Orbit "a product that runs Claude Code" (brief Q11), and what must hold first? | **Decided: the owner accepts the spec's position, and M4 may proceed. Requirements that hold at M4 and after: Orbit installs the unmodified official client from the official installer; it never asks for, stores, or forwards the subscription credential (D08, R04); Orbit's own name and branding contain no Claude Code name or logo; the README says that Orbit is not affiliated with Anthropic and that each user signs in with their own account.** The README, the formula, and the tap may still say that Orbit supports `--agent claude-code` (D19). The owner's answer to brief Q11, which E06-T01 records: **No.** Orbit only launches the official, unmodified client on the user's own account and under the user's own terms with Anthropic; distributing Orbit does not make it a product that runs Claude Code on behalf of others ([decision record](https://github.com/cultofthecode/orbit/pull/98#issuecomment-6822601191)). | Q11 says "yes before a public release" `[DOCUMENT]` brief. A tap is a public release. The answer is legal, not technical, so it was the owner's. |
-| Q5 | Tap or homebrew-core / official homebrew-cask? | **Decided as proposed: a tap, `cultofthecode/homebrew-tap`, so that the install name is `cultofthecode/tap/orbit`. E06 submits nothing to homebrew-core or homebrew-cask.** Revisit when the repository passes the notability rule. | Self-submitted software needs at least 90 forks, 90 watchers, or 225 stars, and the repository must be 30 days old `[DOCUMENT]`; it has 0 `[DATA]`. A core formula also must not depend on a cask or on proprietary software `[DOCUMENT]`; Orbit requires OrbStack, which is proprietary (Q12), so core would likely refuse it even later. |
+| Q4 | Does a public tap make Orbit "a product that runs Claude Code" (brief Q11), and what must hold first? | **Decided: the owner accepts the spec's position, and M4 may proceed. Requirements that hold at M4 and after: Orbit installs the unmodified official client from the official installer; it never asks for, stores, or forwards the subscription credential (D08, R04); Orbit's own name and branding contain no Claude Code name or logo; the README says that Orbit is not affiliated with Anthropic and that each user signs in with their own account.** The README, the formula, and the tap may still say that Orbit supports `--agent claude-code` (D19). The owner's answer to brief Q11, which E06-T01 records: **No.** Orbit only launches the official, unmodified client on the user's own account and under the user's own terms with Anthropic; distributing Orbit does not make it a product that runs Claude Code on behalf of others ([decision record](https://github.com/cultoftheai/orbit/pull/98#issuecomment-6822601191)). | Q11 says "yes before a public release" `[DOCUMENT]` brief. A tap is a public release. The answer is legal, not technical, so it was the owner's. |
+| Q5 | Tap or homebrew-core / official homebrew-cask? | **Decided as proposed: a tap, `cultoftheai/homebrew-tap`, so that the install name is `cultoftheai/tap/orbit`. E06 submits nothing to homebrew-core or homebrew-cask.** Revisit when the repository passes the notability rule. | Self-submitted software needs at least 90 forks, 90 watchers, or 225 stars, and the repository must be 30 days old `[DOCUMENT]`; it has 0 `[DATA]`. A core formula also must not depend on a cask or on proprietary software `[DOCUMENT]`; Orbit requires OrbStack, which is proprietary (Q12), so core would likely refuse it even later. |
 | Q6 | Formula or cask, and built from source or prebuilt? | **Decided as proposed: a formula in the tap that builds from the tag's source tarball** (`depends_on "go" => :build`, `depends_on :macos`, `depends_on arch: :arm64`), with `orbit --version` as `brew test`. GoReleaser still builds the darwin arm64 archive of each GitHub Release (M3), for direct download and for M7. | It needs no Apple Developer account and no signing secret: Homebrew does not quarantine what it builds, so Gatekeeper never sees an unsigned binary. `brew test` and `brew audit --strict` apply to formulae, not to casks. It has the shape homebrew-core would want later. Cost: the first install pulls Homebrew's `go` as a build dependency and compiles for a few seconds. GoReleaser's generated formula (`brews`) is deprecated since v2.10 `[DOCUMENT]`. |
 | Q7 | Signing and notarization of the binary? | **Decided as proposed: not in the first release. The release notes SHALL label the archive unsigned, and the documented install is Homebrew.** M7, under its own spec, adds either Developer ID signing and notarization through GoReleaser's cross-platform notarize (quill, Linux runner) or tap bottles built by `brew test-bot`. | Q6 makes signing unnecessary for the Homebrew path. Notarization costs a paid Apple Developer Program membership and adds four signing secrets to CI `[DOCUMENT]`. It matters for a browser download of a release archive (quarantined, so Gatekeeper blocks it) and for a cask (Homebrew disables casks that fail Gatekeeper in the official taps from September 2026 `[DOCUMENT]`). A bare Mach-O binary cannot carry a stapled ticket; Gatekeeper checks it online `[UNVERIFIED]`. |
 | Q8 | Version scheme, first version, and how `orbit` reports it? | **Decided as proposed. Tags are SemVer `vMAJOR.MINOR.PATCH[-PRERELEASE]` on `main`. Orbit stays at 0.x until the Now scope of the brief works end to end and the escape suite (#10) passes; then 1.0.0. The first tag is `v0.1.0`, cut when `orbit init --agent claude-code` and `orbit shell` (#5, #6) work. `orbit --version` prints `orbit version 0.1.0` and, when known, the commit: `orbit version 0.1.0 (commit 0402908)`.** The value comes from `-X main.version` and `-X main.commit` at link time; without them, from `debug.ReadBuildInfo` (so that `go install …@v0.1.0` reports the tag, and a `go build` in a checkout reports Go's VCS pseudo-version); otherwise `dev`. A leading `v` is stripped, so every path prints the same format. | Homebrew needs a stable, immutable tag `[DOCUMENT]`. cobra already provides `--version` through the root command's `Version` field, so no new command is needed (D19 lists no `orbit version`). A source build from a tarball has no Git metadata, so the formula passes the version and the commit is omitted. |
 | Q9 | Who tags, and how is a tag protected? | **Decided as proposed. The Maintainer (release manager, `SDLC.md` Roles) creates an annotated tag, signed with their SSH key (`gpg.format=ssh`), on a merge commit of `main`, and pushes it over SSH. The release workflow verifies the signature with `git verify-tag` against `.github/allowed_signers`, a committed file that lists the Maintainer's public signing key. Tags are never moved, deleted, or force-pushed after the push; a bad release is fixed with the next patch version. After M4, a tag ruleset limits `v*` creation to the Maintainer and blocks update and deletion; GitHub's immutable releases are turned on.** | A release is a deliberate act, not a merge side effect. Homebrew and every downloaded checksum depend on an immutable tag. Rulesets need a public repository or GitHub Pro (Q2). Merge commits only (owner's rule) means the tagged commit is the merge commit that `main` already has. |
-| Q10 | How does a release reach the tap, and with which credential? | **Decided as proposed. The release workflow opens a PR in `cultofthecode/homebrew-tap` that sets the formula's `url`, `sha256`, and nothing else. The tap CI tests the PR; the Maintainer merges it with a merge commit. The credential is a fine-grained personal access token limited to the tap repository, with contents and pull requests write, that the owner creates and stores as the secret `TAP_GITHUB_TOKEN` of the `release` environment in `orbit` (owner decision, 13 Nov: no GitHub App).** Pre-release tags do not update the tap. Nothing merges a tap PR automatically. | The default `GITHUB_TOKEN` cannot write to another repository `[DOCUMENT]`. A fine-grained token is scoped to one repository. A PR instead of a direct push means a broken formula never reaches users untested. A manual merge keeps a human on the last step of a supply chain for a security tool. |
+| Q10 | How does a release reach the tap, and with which credential? | **Decided as proposed. The release workflow opens a PR in `cultoftheai/homebrew-tap` that sets the formula's `url`, `sha256`, and nothing else. The tap CI tests the PR; the Maintainer merges it with a merge commit. The credential is a fine-grained personal access token limited to the tap repository, with contents and pull requests write, that the owner creates and stores as the secret `TAP_GITHUB_TOKEN` of the `release` environment in `orbit` (owner decision, 13 Nov: no GitHub App).** Pre-release tags do not update the tap. Nothing merges a tap PR automatically. | The default `GITHUB_TOKEN` cannot write to another repository `[DOCUMENT]`. A fine-grained token is scoped to one repository. A PR instead of a direct push means a broken formula never reaches users untested. A manual merge keeps a human on the last step of a supply chain for a security tool. |
 | Q11 | Intel Macs? | **Decided, changed from the proposal: Orbit supports Apple Silicon (darwin arm64) only. M3 builds and publishes only the darwin arm64 archive; no amd64 binary is built anywhere. The formula declares `depends_on arch: :arm64`, so Homebrew refuses to install it on an Intel Mac. The README lists a Mac with Apple Silicon as a requirement.** | The owner's decision. It also removes an untested platform: no CI could run on Intel, and Homebrew moved Intel macOS to Tier 3 in September 2026 and drops it in September 2027 `[DOCUMENT]`. |
 | Q12 | How is the OrbStack dependency expressed? | **Decided, changed from the proposal: OrbStack is a required dependency, because Orbit is built on it. The README lists OrbStack as a requirement, and the formula's `caveats` state that Orbit requires OrbStack and how to install it (`brew install --cask orbstack` or https://orbstack.dev). The run-time check stays hard: `orbit init` fails with OrbStack as the cause when it is missing (E06-S06) or stopped (#62). It is not a Homebrew dependency, because a formula cannot depend on a cask.** Future direction, out of scope for this spec (#137): a Docker backend with OrbStack-like features, such as domains. It would need its own spec and owner-approved rows that supersede D13, R07, and N06. | A formula cannot depend on a cask; only a cask can (`depends_on cask:`) `[DOCUMENT]`. The run-time check names the cause for a stopped OrbStack (#62, `ErrNotRunning`). For a missing one it does not yet: without `orb` on `PATH` the error is `list machines: orb status: exec: "orb": executable file not found in $PATH` `[DATA]` (`TestMissingCLIIsWrapped`, `internal/orbstack/orbstack_test.go:489` on `main`), so E06-S06 adds that case. |
 | Q13 | Where is the release process written down, and how does it relate to `SDLC.md`? | **Decided as proposed. A new `RELEASING.md` at the root holds the release process; one sentence in the "After the merge" paragraph of `SDLC.md` points to it; one row in the task routing of `AGENTS.md` routes release work to it.** `.ai/agentic.config.json` does not change. | `SDLC.md` ends at the merge and leaves releases to the Maintainer `[DOCUMENT]`. A separate file keeps the ticket flow unchanged. |
@@ -51,8 +52,8 @@ flowchart LR
   gr --> ghr["GitHub Release: archives, checksums.txt, provenance"]
   rel -->|"PAT secret (M6)"| tappr["PR in homebrew-tap"]
   tappr --> tapci["tap CI: style, audit, install, test (M5)"]
-  tapci -->|"Maintainer merges"| tap["cultofthecode/homebrew-tap (new)"]
-  tap -->|"brew install cultofthecode/tap/orbit"| user["Apple Silicon Mac with OrbStack"]
+  tapci -->|"Maintainer merges"| tap["cultoftheai/homebrew-tap (new)"]
+  tap -->|"brew install cultoftheai/tap/orbit"| user["Apple Silicon Mac with OrbStack"]
 ```
 
 Takeaway: the existing PR flow is unchanged; a release starts with a human tag on `main`, and the only cross-repository write is a PR on the tap, which a human merges.
@@ -70,20 +71,20 @@ Takeaway: the existing PR flow is unchanged; a release starts with a human tag o
 - `checksum`: `checksums.txt`, SHA-256.
 - `changelog.disable: true`; `release.prerelease: auto`; the release body comes from `CHANGELOG.md` through `--release-notes` (Q16).
 
-`.github/workflows/release.yml` runs on `push` of tags `v*`, in the `release` environment. Before GoReleaser, a script (`.github/scripts/check-release-tag.sh`, testable locally) checks that the tag is annotated, that `git verify-tag` accepts its signature against `.github/allowed_signers`, that it matches the SemVer pattern, that it points to a commit that is an ancestor of `origin/main`, and that the CI workflow concluded `success` for that commit; any failure stops the job before anything is published. Then GoReleaser builds and publishes, and `actions/attest-build-provenance` attests the archive (needs `id-token: write` and `attestations: write`). Users verify with `gh attestation verify <archive> --repo cultofthecode/orbit`.
+`.github/workflows/release.yml` runs on `push` of tags `v*`, in the `release` environment. Before GoReleaser, a script (`.github/scripts/check-release-tag.sh`, testable locally) checks that the tag is annotated, that `git verify-tag` accepts its signature against `.github/allowed_signers`, that it matches the SemVer pattern, that it points to a commit that is an ancestor of `origin/main`, and that the CI workflow concluded `success` for that commit; any failure stops the job before anything is published. Then GoReleaser builds and publishes, and `actions/attest-build-provenance` attests the archive (needs `id-token: write` and `attestations: write`). Users verify with `gh attestation verify <archive> --repo cultoftheai/orbit`.
 
 On GitHub Free, a private repository has neither deployment environments nor artifact attestations `[DOCUMENT]`. So M3 is built and checked privately without a real tag (snapshot builds and the pre-check script), and the first real run of `release.yml`, with its `release` environment and attestations, happens after M4.
 
-**Tap (M5).** A new public repository, `cultofthecode/homebrew-tap`, created with `brew tap-new cultofthecode/tap`, holds `Formula/orbit.rb`:
+**Tap (M5).** A new public repository, `cultoftheai/homebrew-tap`, created with `brew tap-new cultoftheai/tap`, holds `Formula/orbit.rb`:
 
 ```ruby
 class Orbit < Formula
   desc "Run coding agents in sandboxes on OrbStack"
-  homepage "https://github.com/cultofthecode/orbit"
-  url "https://github.com/cultofthecode/orbit/archive/refs/tags/v0.1.0.tar.gz"
+  homepage "https://github.com/cultoftheai/orbit"
+  url "https://github.com/cultoftheai/orbit/archive/refs/tags/v0.1.0.tar.gz"
   sha256 "<sha256 of the tag tarball>"
   license "Apache-2.0"
-  head "https://github.com/cultofthecode/orbit.git", branch: "main"
+  head "https://github.com/cultoftheai/orbit.git", branch: "main"
 
   depends_on "go" => :build
   depends_on arch: :arm64
@@ -110,25 +111,25 @@ end
 
 OrbStack is not a `depends_on`, because a formula cannot depend on a cask (Q12); the caveats and the README state the requirement, and `orbit init` enforces it at run time (E06-S06 for a missing OrbStack, #62 for a stopped one). The test must not call OrbStack: `brew test` runs in a sandbox, and the test must hold on a Mac without OrbStack. The tap CI (`.github/workflows/tests.yml` from `brew tap-new`, adapted) runs on every PR to the tap: `brew test-bot --only-tap-syntax` (style and audit), then `brew install --build-from-source`, `brew test`, `brew audit --strict --online`, and `brew uninstall`. Bottles are not published (Q7 keeps them as an M7 option).
 
-**Tap updates (M6).** A last job in `release.yml`, skipped for pre-release tags, reads the secret `TAP_GITHUB_TOKEN` (it logs a skip and ends when the secret is empty), computes the SHA-256 of `https://github.com/cultofthecode/orbit/archive/refs/tags/vX.Y.Z.tar.gz`, and opens a PR on the tap that changes `url` and `sha256` only (the same edit that `brew bump-formula-pr` makes). The Maintainer merges it after the tap CI passes.
+**Tap updates (M6).** A last job in `release.yml`, skipped for pre-release tags, reads the secret `TAP_GITHUB_TOKEN` (it logs a skip and ends when the secret is empty), computes the SHA-256 of `https://github.com/cultoftheai/orbit/archive/refs/tags/vX.Y.Z.tar.gz`, and opens a PR on the tap that changes `url` and `sha256` only (the same edit that `brew bump-formula-pr` makes). The Maintainer merges it after the tap CI passes.
 
 **Signing (M7, later).** When the owner has a Developer ID: GoReleaser `notarize.macos` (cross-platform, quill) signs and notarizes the arm64 binary on the Linux runner, with the certificate and the App Store Connect API key as `release` environment secrets. Only then can a prebuilt cask be considered.
 
 **Install for a user (after M5).** Requirements, as the README lists them: a Mac with Apple Silicon, Homebrew, and OrbStack.
 
 ```sh
-brew tap cultofthecode/tap
-brew trust --formula cultofthecode/tap/orbit   # Homebrew 6+ asks to trust third-party code
-brew install cultofthecode/tap/orbit
+brew tap cultoftheai/tap
+brew trust --formula cultoftheai/tap/orbit   # Homebrew 6+ asks to trust third-party code
+brew install cultoftheai/tap/orbit
 ```
 
-`brew install cultofthecode/tap/orbit` alone also works: installing a fully qualified name trusts only that item `[DOCUMENT]`.
+`brew install cultoftheai/tap/orbit` alone also works: installing a fully qualified name trusts only that item `[DOCUMENT]`.
 
 **Alternatives considered.**
 
 - *GoReleaser cask with prebuilt binaries now.* Faster installs, but needs the Apple Developer Program and four signing secrets before the first public release, or the `xattr -dr com.apple.quarantine` hook that GoReleaser itself calls a Gatekeeper bypass `[DOCUMENT]`. Rejected for now; it is M7.
 - *GoReleaser `brews` (formula with prebuilt binary).* Deprecated since v2.10 `[DOCUMENT]`; building on it means a forced migration.
-- *`go install github.com/cultofthecode/orbit/cmd/orbit@latest` only.* Works for free after M4 and is documented as the secondary channel, but needs Go and has no upgrade path or caveats.
+- *`go install github.com/cultoftheai/orbit/cmd/orbit@latest` only.* Works for free after M4 and is documented as the secondary channel, but needs Go and has no upgrade path or caveats.
 - *Private repository with a token for every user.* Serves only the owner; rejected by Q2.
 - *A universal or amd64 build for Intel Macs.* Rejected by Q11: Apple Silicon only.
 
@@ -146,11 +147,11 @@ The system SHALL print `orbit version <version>` for `orbit --version`, followed
 - THEN it prints `orbit version X.Y.Z (commit abc1234)` and exits 0
 
 ##### Scenario: Homebrew source build
-- WHEN `orbit --version` runs after `brew install cultofthecode/tap/orbit` at version X.Y.Z
+- WHEN `orbit --version` runs after `brew install cultoftheai/tap/orbit` at version X.Y.Z
 - THEN it prints `orbit version X.Y.Z` and exits 0
 
 ##### Scenario: `go install`
-- WHEN `orbit --version` runs after `go install github.com/cultofthecode/orbit/cmd/orbit@vX.Y.Z`
+- WHEN `orbit --version` runs after `go install github.com/cultoftheai/orbit/cmd/orbit@vX.Y.Z`
 - THEN it prints `orbit version X.Y.Z` and exits 0
 
 ##### Scenario: Plain `go build`
@@ -185,10 +186,10 @@ The system SHALL publish, for a SemVer tag on a commit of `main` whose CI passed
 - THEN the release workflow does not publish anything
 
 #### ADDED Requirement: Homebrew installs the latest stable release
-The system SHALL let a Mac with Apple Silicon and Homebrew install and upgrade Orbit with `brew install cultofthecode/tap/orbit` and `brew upgrade`, at the latest stable tag, without any manual edit of the tap.
+The system SHALL let a Mac with Apple Silicon and Homebrew install and upgrade Orbit with `brew install cultoftheai/tap/orbit` and `brew upgrade`, at the latest stable tag, without any manual edit of the tap.
 
 ##### Scenario: Install
-- WHEN a user on a Mac with Apple Silicon and Homebrew runs `brew install cultofthecode/tap/orbit`
+- WHEN a user on a Mac with Apple Silicon and Homebrew runs `brew install cultoftheai/tap/orbit`
 - THEN `orbit --version` prints the latest stable version, and the caveats state that Orbit requires OrbStack
 
 ##### Scenario: Upgrade
@@ -200,7 +201,7 @@ The system SHALL let a Mac with Apple Silicon and Homebrew install and upgrade O
 - THEN the GitHub Release is marked pre-release and no tap PR is opened
 
 ##### Scenario: Intel Mac
-- WHEN a user on an Intel Mac runs `brew install cultofthecode/tap/orbit`
+- WHEN a user on an Intel Mac runs `brew install cultoftheai/tap/orbit`
 - THEN Homebrew refuses the install because the formula requires arm64, and nothing is installed
 
 #### ADDED Requirement: OrbStack is a documented, enforced requirement
@@ -215,7 +216,7 @@ The system SHALL state in the README and in the formula's caveats that Orbit req
 - THEN `orbit init` fails with `OrbStack is not running` and the advice to start it, and creates no machine (#62)
 
 ##### Scenario: README
-- WHEN a user reads the README of `cultofthecode/orbit`
+- WHEN a user reads the README of `cultoftheai/orbit`
 - THEN its requirements name a Mac with Apple Silicon and OrbStack, and it says that Orbit is not affiliated with Anthropic
 
 #### ADDED Requirement: Orbit names OrbStack when `orb` is missing
@@ -233,7 +234,7 @@ The system SHALL, when the `orb` CLI is not found on `PATH`, fail every command 
 
 - **Code:** two packages change, both in M2. `cmd/orbit` (E06-S02): the composition root gains the version variables and sets `Version` on the root command; `cobra` already provides `--version` and the `completion` command. `internal/orbstack` (E06-S06): a new sentinel `ErrNotInstalled` for an `orb` that is not on `PATH`; `TestMissingCLIIsWrapped` gets the new text and keeps its `exec.ErrNotFound` check; the invariant on `orb status` in `internal/orbstack/AGENTS.md` names the new error. OrbStack-specific code stays in the adapter (R07). No other module under `internal/` changes, no dependency is added, no dependency rule is touched, and `ARCHITECTURE.md` needs no new Key decisions row.
 - **New repository files:** `LICENSE`, `.github/workflows/ci.yml`, `.github/workflows/release.yml`, `.github/scripts/check-release-tag.sh`, `.github/allowed_signers`, `.goreleaser.yaml`, `RELEASING.md`, `CHANGELOG.md`; edits to `README.md` (requirements, install section, and the not-affiliated line; there is no README yet `[DATA]`, so M3 adds one), `AGENTS.md` (CI row and a Releases row), and `SDLC.md` (one pointer sentence, Q13).
-- **New repository:** `cultofthecode/homebrew-tap`, public, with `Formula/orbit.rb`, `.github/workflows/tests.yml`, and a README. Merge commits only, branch protection on `main` with the tap CI as a required check.
+- **New repository:** `cultoftheai/homebrew-tap`, public, with `Formula/orbit.rb`, `.github/workflows/tests.yml`, and a README. Merge commits only, branch protection on `main` with the tap CI as a required check.
 - **New credentials:** the token `TAP_GITHUB_TOKEN` for the tap (M6) and, in M7, the Developer ID certificate and the notary API key. All live as secrets of the `release` environment of `orbit`, which only tag pushes of `v*` may use. No credential touches a sandbox, and nothing here changes what a sandbox receives (R08 is untouched).
 - **Tooling, not Go modules:** GoReleaser and golangci-lint run in CI as pinned binaries. They do not enter `go.mod`, so the "ask first before a Go module dependency" rule does not apply; the GitHub Actions used are listed in the PRs of M1 and M3 for review.
 
@@ -244,7 +245,7 @@ The system SHALL, when the `orb` CLI is not found on `PATH`, fail every command 
 | Homebrew's `go` is older than the `go` line of `go.mod` (today `go 1.27.4`) | The formula build fails, or Go tries to download a toolchain, which Homebrew's build sandbox may block `[UNVERIFIED]`. | The tap CI fails on the bump PR, so the PR is not merged. Rule in `RELEASING.md`: raise the `go` line of `go.mod` only to a version that Homebrew's `go` already ships. |
 | A tag is pushed on the wrong commit | The release workflow refuses (not on `main`, or CI not green). | A failed release run naming the check; no release. The refused tag stays, because tags are never deleted (Q9); the Maintainer tags the right commit with the next patch version. |
 | A release is broken after publication | The tag and release stay (immutable). | A patch release `vX.Y.Z+1`; the tap PR updates the formula. Never move or force-push a tag. |
-| GoReleaser publishes the release, but the tap PR job fails | The release exists; the tap stays at the old version. | A failed job in the release run. The Maintainer re-runs that job, or runs `brew bump-formula-pr --url … cultofthecode/tap/orbit` by hand. |
+| GoReleaser publishes the release, but the tap PR job fails | The release exists; the tap stays at the old version. | A failed job in the release run. The Maintainer re-runs that job, or runs `brew bump-formula-pr --url … cultoftheai/tap/orbit` by hand. |
 | The tap CI fails on the bump PR | The PR is not merged; users stay on the previous version. | A red PR on the tap with the `brew` output. |
 | The tap token leaks | Someone can push to the tap, not to `orbit`. | Revoke the token in the settings of its owner and rotate the secret; review the tap's history; branch protection on the tap blocks direct pushes to `main`. |
 | A user lacks OrbStack | Install succeeds; the caveats state that OrbStack is required (Homebrew cannot install a cask for a formula). | `orbit init` fails with an error that names OrbStack and how to install it, and creates no machine (E06-S06). A stopped OrbStack gets `OrbStack is not running` and the advice to start it (#62). |
@@ -255,7 +256,7 @@ The system SHALL, when the `orb` CLI is not found on `PATH`, fail every command 
 ## 📝 Risks & Impact Review
 
 - **Supply chain.** Orbit is a security tool whose users trust it with their project directory and SSH agent; a compromised release reaches every user. Mitigations: tags only from `main` with green CI, signed tags, a `release` environment limited to tags, pinned actions and tools, build provenance, a PR plus human merge on the tap, and a least-privilege App token. The M3 and M6 issues are `risk-high` for this reason, with a review by a second person, even though no sandbox boundary changes.
-- **Hard to reverse:** making the repository public (Q2) and the license (Q3) cannot be undone in practice: copies stay out there. The install name `cultofthecode/tap/orbit` and the binary name `orbit` become a contract with users; renaming later needs a formula rename (`formula_renames.json`). A published tag is permanent.
+- **Hard to reverse:** making the repository public (Q2) and the license (Q3) cannot be undone in practice: copies stay out there. The install name `cultoftheai/tap/orbit` and the binary name `orbit` become a contract with users; renaming later needs a formula rename (`formula_renames.json`). A published tag is permanent.
 - **Product direction, not defects:** a formula instead of a cask (Q6), no notarization in the first release (Q7), a human merge on the tap (Q10), and Apple Silicon only (Q11) are the owner's choices; none violates a repository rule.
 - **Legal (Q4 / brief Q11):** the owner accepted the position of Q4 on 2026-11-12, and M4 may proceed. The README's not-affiliated line and the absence of a Claude Code name or logo from Orbit's own name and branding are requirements of M3 and M4; documenting `--agent claude-code` stays allowed. The owner's answer to brief Q11 is "No" (Evidence).
 - **Cost:** GitHub Actions on a private repository uses macOS minutes at ten times the rate; public removes that. M7 costs the Apple Developer Program membership.
@@ -263,7 +264,7 @@ The system SHALL, when the `orb` CLI is not found on `PATH`, fail every command 
 ## 📝 Decisions in play
 
 - Q03 (brief) — answered by Q1 through a new D row (D27), which E06-T01 adds; owner: Jakub Tobiasz, decided 2026-11-12.
-- Q11 (brief) — answered by Q4 (accepted 2026-11-12); E06-T01 records it; owner: Jakub Tobiasz. The answer is "No" ([decision record](https://github.com/cultofthecode/orbit/pull/98#issuecomment-6822601191), quoted in Evidence).
+- Q11 (brief) — answered by Q4 (accepted 2026-11-12); E06-T01 records it; owner: Jakub Tobiasz. The answer is "No" ([decision record](https://github.com/cultoftheai/orbit/pull/98#issuecomment-6822601191), quoted in Evidence).
 - D13 — "Orbit targets OrbStack only". Unchanged; E06-S06 only improves the error when OrbStack is missing.
 - D08, R04 — Orbit never intermediates the subscription credential and installs the unmodified client; the public README states this (Q4). Unchanged.
 - R07, N05, N06 — macOS and OrbStack only; the formula says `depends_on :macos` and `depends_on arch: :arm64`, and OrbStack is a required dependency (Q12). Unchanged. The Docker backend of Q12 is a future direction that would need rows superseding D13, R07, and N06.
@@ -272,7 +273,7 @@ The system SHALL, when the `orb` CLI is not found on `PATH`, fail every command 
 
 ## 📝 Evidence
 
-- Decision record, 2026-11-12: the owner gave the decisions on Q1–Q16 to his coordinator in chat (12:06–12:40 Europe/Warsaw); Q11 and Q12 changed from the proposals. The coordinator posted them on PR #98 on the owner's behalf, at his explicit request: [decision record](https://github.com/cultofthecode/orbit/pull/98#issuecomment-6822601191). It confirms Q1–Q16 as written at head `119187e` and gives the answer to brief Q11 (Q4). The automation's earlier [summary comment](https://github.com/cultofthecode/orbit/pull/98#issuecomment-6822064504) restates the same decisions.
+- Decision record, 2026-11-12: the owner gave the decisions on Q1–Q16 to his coordinator in chat (12:06–12:40 Europe/Warsaw); Q11 and Q12 changed from the proposals. The coordinator posted them on PR #98 on the owner's behalf, at his explicit request: [decision record](https://github.com/cultoftheai/orbit/pull/98#issuecomment-6822601191). It confirms Q1–Q16 as written at head `119187e` and gives the answer to brief Q11 (Q4). The automation's earlier [summary comment](https://github.com/cultoftheai/orbit/pull/98#issuecomment-6822064504) restates the same decisions.
 - Brief Q11 (Anthropic Commercial Terms), the owner's answer as given in the decision record: "**No.** Orbit only launches the official, unmodified client on the user's own account and under the user's own terms with Anthropic; distributing Orbit does not make it a product that runs Claude Code on behalf of others." E06-T01 writes this text into the brief.
 - `[DATA]` 2026-11-12: `TestMissingCLIIsWrapped` (`internal/orbstack/orbstack_test.go:489` on `main` at `9a5b4dd`) pins `list machines: orb status: exec: "orb": executable file not found in $PATH` for a missing `orb`; `ErrNotRunning` (`internal/orbstack/orbstack.go:121`) covers only a stopped or starting OrbStack.
 - `[DATA]` 2026-11-11, read-only: `git tag` (empty); `gh repo view cultofthecode/orbit` (`PRIVATE`, no license, 0 stars, forks, and watchers; merge commits only); `gh api repos/cultofthecode/orbit/branches/main/protection` and `…/rulesets` (403, "Upgrade to GitHub Pro or make this repository public"); `gh api …/actions/workflows` (0); `gh api …/releases` (0); `gh repo view cultofthecode/homebrew-tap` (does not exist); `go.mod` (`go 1.27.4`, only `cobra`); no `import "C"` in the module; Homebrew 7.0.12 and OrbStack cask 2.2.5 on the owner's Mac.
@@ -296,7 +297,7 @@ The system SHALL, when the `orb` CLI is not found on `PATH`, fail every command 
 | M2 | E06-S06 — A user without OrbStack sees OrbStack named, and how to install it, when `orbit init` runs | `internal/orbstack` `ErrNotInstalled`, its test, the `internal/orbstack/AGENTS.md` invariant | — | `feature`, `risk-high` (every change to `internal/orbstack`) |
 | M3 | E06-S03 — A signed tag on `main` produces a GitHub Release with the darwin arm64 archive, checksums, and provenance | `.goreleaser.yaml` (darwin arm64 only), `release.yml`, tag check, `RELEASING.md`, `CHANGELOG.md`, `README.md` (requirements: Apple Silicon and OrbStack; not-affiliated line), `SDLC.md` pointer, `AGENTS.md` Releases row; first real run after M4 | M1, M2, M0-T01 (Q13), M0-T02 | `feature`, `risk-high` (supply chain) |
 | M4 | E06-T03 — Make the repository public and protect `main` and the `v*` tags | visibility, branch protection, tag ruleset, immutable releases | M0–M3 green | `security`, `risk-high` |
-| M5 | E06-S04 — The owner can run `brew install cultofthecode/tap/orbit` | the tap repository, formula, tap CI, first tag `v0.1.0` | M4, #5 and #6 merged (Q8), E06-S06 | `feature`, `risk-medium` |
+| M5 | E06-S04 — The owner can run `brew install cultoftheai/tap/orbit` | the tap repository, formula, tap CI, first tag `v0.1.0` | M4, #5 and #6 merged (Q8), E06-S06 | `feature`, `risk-medium` |
 | M6 | E06-S05 — A release opens a tested formula bump PR on the tap | PAT secret, release job | M5 | `feature`, `risk-high` (write token) |
 | M7 | not filed in E06 — a follow-up spec: signed and notarized release binaries, or tap bottles | its own spec | owner's choice (Q7) | — |
 
@@ -332,7 +333,7 @@ M1 and M2 can ship now and in parallel. M3 is built and dry-run privately (`gore
 
 ### Phase 5 — tap and first release (M5)
 
-1. Create `cultofthecode/homebrew-tap` with `brew tap-new`, the formula of this spec, the tap CI, and a README; protect its `main` the same way. Check: tap CI is green on a PR that adds the formula against a test tag.
+1. Create `cultoftheai/homebrew-tap` with `brew tap-new`, the formula of this spec, the tap CI, and a README; protect its `main` the same way. Check: tap CI is green on a PR that adds the formula against a test tag.
 2. When #5 and #6 are merged: tag `v0.1.0` per `RELEASING.md`, then set the formula to it through a PR. Check: on a clean macOS user account on an Apple Silicon Mac, the transcript of `brew tap`, `brew trust --formula`, `brew install`, `orbit --version`, `orbit init --agent claude-code` on a named OrbStack version, and `brew uninstall`. This transcript is the QA evidence (`SDLC.md`, The QA gate: a terminal transcript on a named OrbStack version).
 
 ### Phase 6 — automatic tap updates (M6)

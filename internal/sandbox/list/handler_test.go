@@ -6,8 +6,8 @@ import (
 	"slices"
 	"testing"
 
-	"github.com/cultofthecode/orbit/internal/orbstack/orbstacktest"
-	"github.com/cultofthecode/orbit/internal/sandbox"
+	"github.com/cultoftheai/orbit/internal/orbstack/orbstacktest"
+	"github.com/cultoftheai/orbit/internal/sandbox"
 )
 
 // fakeMachines wraps the fake of OrbStack as the Machines of the slice, as

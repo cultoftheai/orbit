@@ -13,5 +13,5 @@ linters:
             - "!**/cmd/orbit/*.go"
             - "!**/internal/orbstack/**"
           deny:
-            - pkg: github.com/cultofthecode/orbit/internal/orbstack$
+            - pkg: github.com/cultoftheai/orbit/internal/orbstack$
               desc: only cmd/orbit imports the OrbStack adapter (ARCHITECTURE.md, dependency rule 1)

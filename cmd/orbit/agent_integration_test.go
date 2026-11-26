@@ -7,11 +7,11 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/cultofthecode/orbit/internal/agent"
-	"github.com/cultofthecode/orbit/internal/agent/claude"
-	"github.com/cultofthecode/orbit/internal/orbstack"
-	"github.com/cultofthecode/orbit/internal/sandbox"
-	"github.com/cultofthecode/orbit/internal/sandbox/initialize"
+	"github.com/cultoftheai/orbit/internal/agent"
+	"github.com/cultoftheai/orbit/internal/agent/claude"
+	"github.com/cultoftheai/orbit/internal/orbstack"
+	"github.com/cultoftheai/orbit/internal/sandbox"
+	"github.com/cultoftheai/orbit/internal/sandbox/initialize"
 )
 
 // withClaudeProbes checks a sandbox after init --agent claude-code.
